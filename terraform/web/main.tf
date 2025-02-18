@@ -1,17 +1,18 @@
 provider "aws" {
-    region = "us-east-1"
+  region = "us-east-1"
 }
 
 variable "name" {
-    description = "Name the instance on deploy"
+  description = "Name the instance on deploy"
+  default     = "web_server"
 }
 
 resource "aws_instance" "devops_01_web" {
-    ami = "ami-0729e439b6769d6ab"
-    instance_type = "t2.micro"
-    key_name = "devops_01"
+  ami           = "ami-053a45fff0a704a47"
+  instance_type = "t2.micro"
+  key_name      = "my-first-keypair"
 
-    tags = {
-        Name = "${var.name}"
-    }
+  tags = {
+    Name = "${var.name}"
+  }
 }
