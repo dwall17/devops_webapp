@@ -1,8 +1,3 @@
-
-provider "aws" {
-  region = "us-east-1"
-}
-
 variable "jenkins_name" {
   description = "Name the instance on deploy"
   default     = "jenkins"
