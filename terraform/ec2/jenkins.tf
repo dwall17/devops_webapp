@@ -35,7 +35,7 @@ resource "aws_security_group" "jenkins_sg" {
 }
 
 resource "aws_instance" "devops_01_jenkins" {
-  ami           = "ami-053a45fff0a704a47"
+  ami           = "ami-04b4f1a9cf54c11d0"
   instance_type = "t2.micro"
   key_name      = "my-first-keypair"
 
