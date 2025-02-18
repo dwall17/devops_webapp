@@ -3,7 +3,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "name" {
+variable "web_server_name" {
   description = "Name the instance on deploy"
   default     = "web_server"
 }
@@ -14,6 +14,6 @@ resource "aws_instance" "devops_01_web" {
   key_name      = "my-first-keypair"
 
   tags = {
-    Name = "${var.name}"
+    Name = "${var.web_server_name}"
   }
 }
