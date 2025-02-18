@@ -3,7 +3,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "name" {
+variable "jenkins_name" {
   description = "Name the instance on deploy"
   default     = "jenkins"
 }
@@ -14,6 +14,6 @@ resource "aws_instance" "devops_01_jenkins" {
   key_name      = "my-first-keypair"
 
   tags = {
-    Name = "${var.name}"
+    Name = "${var.jenkins_name}"
   }
 }
