@@ -1,3 +1,12 @@
+- name: Install Docker
+  hosts: jenkins
+  tasks:
+    - name: Install Docker runtime
+      apt:
+        update_cache: yes
+        name: docker.io
+      become: yes
+
 - name: Configure Jenkins Playbook
   hosts: jenkins
   tasks:
