@@ -1,3 +1,12 @@
+- name: Install Docker
+  hosts: jenkins
+  tasks:
+    - name: Install Docker runtime
+      apt:
+        update_cache: yes
+        name: docker.io
+      become: yes
+
 - name: Configure Jenkins Playbook
   hosts: jenkins
   tasks:
@@ -8,11 +17,11 @@
       become: yes
 
     - name: Download Jenkins key
-      shell: curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+      shell: sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
       become: yes
 
     - name: Add Jenkins repository
-      shell: echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+      shell: echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" https://pkg.jenkins.io/debian-stable binary/ | sudo tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null
       become: yes
 
     - name: Update apt cache
@@ -25,4 +34,8 @@
 
     - name: Run Jenkins
       shell: /etc/init.d/jenkins start
+      become: yes
+
+    - name: Allow Jenkins to run Docker without sudo privs
+      shell: sudo usermod -aG docker jenkins
       become: yes
