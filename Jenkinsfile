@@ -32,10 +32,10 @@ pipeline {
             steps {
                 sh '''
                     ssh -o StrictHostKeyChecking=no ubuntu@${REMOTE_HOST} "\
-                    docker pull ${DOCKER_IMAGE}:${DOCKER_TAG} && \
+                    docker pull ${DOCKER_IMAGE} && \
                     docker stop my_container || true && \
                     docker rm my_container || true && \
-                    docker run -d --name my_container -p 80:8000 ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    docker run -d --name my_container -p 80:8000 ${DOCKER_IMAGE}"
                    '''
             }
         }
