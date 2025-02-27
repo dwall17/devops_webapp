@@ -1,9 +1,29 @@
 pipeline {
     agent any
+
+    environment {
+        // Define the image
+        DOCKER_IMAGE = "dwall17/webapp"
+    }
+
     stages {
-        stage('Echo Test') {
+        stage('Build') {
             steps {
-                echo 'this is a test'
+                script {
+                    // Build the docker image
+                    dockerImage = docker.build("$DOCKER_IMAGE",  "-f docker/Dockerfile .")
+                }
+            }
+        }
+        
+        stage('Push') {
+            steps {
+                script {
+                    // Push the Docker image to Docker Hub
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker') {
+                        dockerImage.push()
+                    }
+                }
             }
         }
     }
