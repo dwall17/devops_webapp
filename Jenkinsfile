@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     // Build the docker image
-                    dockerImage = docker.build("$DOCKER_IMAGE",  "-f docker/Dockerfile .")
+                    dockerImage = docker.build("$DOCKER_IMAGE",  "-f docker/Dockerfile docker/")
                 }
             }
         }
