@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Push the Docker image to Docker Hub
-                    docker.withRegistry('ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts', 'docker') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker') {
                         dockerImage.push()
                     }
                 }
