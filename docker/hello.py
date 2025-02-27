@@ -10,7 +10,7 @@ class Page2Resource(object):
         resp.status = falcon.HTTP_200
         resp.body = ("This is the second page!")
 
-app = falcon.API()
+app = falcon.App()
 
 hello = HelloResource()
 
