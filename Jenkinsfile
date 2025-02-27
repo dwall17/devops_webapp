@@ -30,13 +30,15 @@ pipeline {
 
         stage('Deploy') {
             steps {
+               sshagent(['ec2']) {
                 sh '''
                     ssh -o StrictHostKeyChecking=no ubuntu@${REMOTE_HOST} "\
-                    docker pull ${DOCKER_IMAGE} && \
-                    docker stop my_container || true && \
-                    docker rm my_container || true && \
-                    docker run -d --name my_container -p 80:8000 ${DOCKER_IMAGE}"
+                    sudo docker pull ${DOCKER_IMAGE} && \
+                    sudo docker stop my_container || true && \
+                    sudo docker rm my_container || true && \
+                    sudo docker run -d --name my_container -p 80:8000 ${DOCKER_IMAGE}"
                    '''
+               }
             }
         }
     }
