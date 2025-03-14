@@ -8,7 +8,7 @@ class HelloResource(object):
 class GoodKittyImage:
     def on_get(self, req, resp):
         """Handles GET requests and returns a PNG image"""
-        image_path = "images/good_kitty.png"
+        image_path = "./images/good_kitty.png"
 
         # Read the image file in binary mode
         with open(image_path, "rb") as img_file:
@@ -19,7 +19,7 @@ class GoodKittyImage:
 class BadKittyImage:
     def on_get(self, req, resp):
         """Handles GET requests and returns a PNG image"""
-        image_path = "images/bad_kitty.png"
+        image_path = "./images/bad_kitty.png"
 
         # Read the image file in binary mode
         with open(image_path, "rb") as img_file:
