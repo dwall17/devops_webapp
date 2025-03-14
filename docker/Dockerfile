@@ -5,10 +5,12 @@ RUN pip install --upgrade pip
 
 WORKDIR /hello_world
 
+COPY ./images/ ./images/
+
 COPY requirements.txt .
 
 RUN pip3 install -r requirements.txt
 
-COPY . .
+COPY hello.py .
 
 CMD ["gunicorn", "-b", "0.0.0.0:8000", "hello:app"]
