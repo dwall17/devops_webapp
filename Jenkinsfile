@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define the image
         DOCKER_IMAGE = "dwall17/webapp"
-        REMOTE_HOST = "100.24.26.191"
+        REMOTE_HOST = "54.227.100.4"
     }
 
     stages {

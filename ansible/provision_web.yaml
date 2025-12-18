@@ -1,20 +1,23 @@
 - name: Provision Web server
   hosts: webserver
+  become: yes
   tasks: 
 
     - name: Install pip3
       apt:
         update_cache: yes
         name: python3-pip
-      become: yes
+
+    - name: Enable universe repo
+      ansible.builtin.apt_repository:
+        repo: "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe"
+        state: present
 
     - name: Install Docker
       apt:
         name: docker.io
-      become: yes
 
     - name: Start Docker
       shell: |
         systemctl start docker
         systemctl enable docker
-      become: yes
