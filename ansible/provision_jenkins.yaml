@@ -1,11 +1,16 @@
 - name: Install Docker
   hosts: jenkins
+  become: yes
   tasks:
+    - name: Enable universe repo
+      ansible.builtin.apt_repository:
+        repo: "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe"
+        state: present
+
     - name: Install Docker runtime
       apt:
         update_cache: yes
         name: docker.io
-      become: yes
 
 - name: Configure Jenkins Playbook
   hosts: jenkins
